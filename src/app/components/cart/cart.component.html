@@ -1,0 +1,72 @@
+<section class="cart">
+  <h2>Your Cart ({{ totalItems }})</h2>
+
+  <div *ngIf="cartItems.length === 0" class="cart-content">
+    <div class="empty-cart-content">
+      <img src="images/illustration-empty-cart.svg" alt="empty cart svg">
+      <p class="empty-cart-description">Added items will appear here</p>
+    </div>
+  </div>
+
+<!-- cart -->
+  <div *ngIf="cartItems.length > 0">
+    <ul class="cart-items">
+      <li class="cart-item" *ngFor="let item of cartItems">
+        <div class="item-info">
+          <h3>{{ item.name }}</h3>
+          <p class="quantity-price">
+            <span class="quantity">{{ item.quantity }}&#88;</span>
+            <span class="unit-price">&#64; ${{ item.price }}</span>
+            <span class="subtotal">${{ item.subTotalPrice.toFixed(2) }}</span>
+          </p>
+        </div>
+        <button class="remove-item" (click)="removeItem(item)">
+          <img src="images/icon-remove-item.svg" alt="Remove item">
+        </button>
+      </li>
+    </ul>
+
+    <div class="cart-summary">
+      <p class="label">Order Total</p>
+      <p class="total">${{ orderTotal.toFixed(2) }}</p>
+    </div>
+
+    <div class="delivery-note">
+      <img src="images/icon-carbon-neutral.svg" alt="Tree icon">
+      <p>This is a <strong>carbon-neutral</strong> delivery</p>
+    </div>
+
+    <button class="confirm-btn" (click)="confirmOrder()">Confirm Order</button>
+  </div>
+
+  <!-- Order Confirmation Modal -->
+<div class="modal-overlay" *ngIf="isOrderConfirmed">
+  <div class="modal">
+    <div class="modal-header">
+      <img src="images/icon-order-confirmed.svg" alt="Success icon" />
+      <h2>Order Confirmed</h2>
+      <p>We hope you enjoy your food!</p>
+    </div>
+
+    <div class="modal-body">
+      <div class="item" *ngFor="let item of confirmedItems">
+        <img [src]="item.image.thumbnail" alt="{{ item.name }}" />
+        <div class="info">
+          <p class="name">{{ item.name }}</p>
+          <p class="quantity">{{ item.quantity }}&#88; &#64;${{ item.price}}</p>
+        </div>
+        <p class="total">{{ (item.price * item.quantity)}}</p>
+      </div>
+
+      <hr />
+      <div class="total-row">
+        <p>Order Total</p>
+        <p class="grand-total">{{ orderTotal | currency }}</p>
+      </div>
+    </div>
+
+    <button class="start-new-order-btn" (click)="startNewOrder()">Start New Order</button>
+  </div>
+</div>
+
+</section>

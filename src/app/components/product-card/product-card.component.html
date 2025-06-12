@@ -1,0 +1,23 @@
+
+  <h1 class="desserts-title">Desserts</h1>
+
+  <div class="desserts-container">
+
+    <div *ngIf="desserts.length > 0" class="desserts-grid">
+      <div *ngFor="let dessert of desserts" class="dessert-item">
+        <section class="item-image-add-to-cart">
+          <picture>
+            <source media="(min-width: 1024px)" [srcset]="dessert.image.desktop">
+            <source media="(min-width: 768px)" [srcset]="dessert.image.tablet">
+            <img [src]="dessert.image.mobile" alt="Image of {{ dessert.name }}">
+          </picture>
+          <app-add-to-cart [dessert]="dessert"></app-add-to-cart>
+        </section>
+        <section class="item-info">
+          <p class="category">{{ dessert.category }}</p>
+          <p class="name">{{ dessert.name }}</p>
+          <p class="price">${{ dessert.price }}</p>
+        </section>
+      </div>
+    </div>
+  </div>

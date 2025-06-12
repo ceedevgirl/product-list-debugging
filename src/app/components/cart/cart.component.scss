@@ -1,0 +1,256 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+// cart section
+.cart{
+  width: 300px;
+  height: fit-content;
+  flex: 0 0 380px;
+  padding: 1rem;
+  box-shadow:  2px 4px 6px rgba(0, 0, 0, 0.2);
+
+  h2 {
+    @include TextPreset2;
+    color: $red;
+  }
+
+  .cart-content {
+    width: 100%;
+    height: fit-content;
+
+    .empty-cart-content {
+      @include flex(column, center, center);
+      width: 100%;
+      
+      p {
+        @include TextPreset4Bold;
+        color: $rose-500;
+      }
+    }
+  }
+
+.cart-items {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+
+  .item-info {
+    h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $rose-900;
+    }
+
+    .quantity-price {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: $rose-400;
+
+      .quantity {
+        color: $red; 
+        font-weight: $font-semibold;
+      }
+
+      .subtotal {
+        font-weight: $font-semibold;
+        color: $rose-900;
+      }
+    }
+  }
+
+  .remove-item {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    img {
+      width: 20px;
+      height: 20px;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+
+  .label {
+    color: $rose-300;
+  }
+
+  .total {
+    font-weight:  $font-bold;
+    color: $rose-900;
+  }
+}
+
+.delivery-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #444;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #d64500;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #bb3e00;
+  }
+}
+
+
+  .modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+   overflow-y: auto;
+
+  .modal {
+    background-color: $white;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+
+    .modal-header {
+      text-align: left;
+
+      img {
+        width: 40px;
+        margin-bottom: 0.5rem;
+      }
+
+      h2 {
+        @include TextPreset1;
+        color: $rose-900;
+      }
+
+      p {
+        color: $rose-500;
+      }
+    }
+
+    .modal-body {
+      margin-top: 1rem;
+      background-color: $rose-50;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      overflow-y: auto;
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        
+
+        img {
+          width: 40px;
+          border-radius: 0.5rem;
+        }
+
+        .info {
+          flex: 1;
+          margin: 0 0.75rem;
+
+          .name {
+            font-weight: $font-regular;
+          }
+
+          .quantity {
+            font-size: 0.85rem;
+            color: $white;
+          }
+        }
+
+        .total {
+          font-weight: $font-bold;
+        }
+      }
+
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+
+        .grand-total {
+          font-weight: $font-bold;
+          font-size: 1.25rem;
+        }
+      }
+    }
+
+    .start-new-order-btn {
+      background-color: $red;
+      color: $white;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 2rem;
+      margin-top: 1rem;
+      border: none;
+      cursor: pointer;
+      font-weight:  $font-bold;
+
+      &:hover {
+        background-color: $red;
+      }
+    }
+  }
+}
+
+}

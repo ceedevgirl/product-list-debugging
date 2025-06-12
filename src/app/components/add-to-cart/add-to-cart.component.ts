@@ -1,28 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { Dessert } from '../../model/dessert';
 
 @Component({
   selector: 'app-add-to-cart',
   templateUrl: './add-to-cart.component.html',
-  styleUrl: './add-to-cart.component.scss'
-});
-
+  styleUrls: ['./add-to-cart.component.scss']  
+})
 export class AddToCartComponent {
-  isAddedToCart = false;
+  @Input() dessert!: Dessert; 
+
+  // isAddedToCart = false;
   quantity = 1;
+  addedConfirmation = false;
+
+  constructor(private cartService: CartService) {}
 
   addToCart() {
-    this.isAddedToCart = true;
-  }
-
-  decreaseProductItem() {
-    if (this.quantity < 1) {
-      this.isAddedToCart = false;
+    for (let i = 0; i < this.quantity; i++) {
+      this.cartService.addDessertToCart(this.dessert);
     }
-    this.quantity--;
+    // this.isAddedToCart = true;
+    this.addedConfirmation = true; // Show confirmation
+    setTimeout(() => {
+      this.addedConfirmation = false; // Hide confirmation after a short delay
+    }, 2000); // 
   }
 
   increaseProductItem() {
-    ++this.quantity;
+    this.quantity++;
   }
 
-};
+  decreaseProductItem() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    } else {
+      // this.isAddedToCart = false;
+      this.quantity = 1;
+    }
+  }
+}
