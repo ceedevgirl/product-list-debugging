@@ -55,13 +55,14 @@
           <p class="name">{{ item.name }}</p>
           <p class="quantity">{{ item.quantity }}&#88; &#64;${{ item.price}}</p>
         </div>
-        <p class="total">{{ (item.price * item.quantity)}}</p>
+        <p class="total">${{ (item.price * item.quantity)}}</p>
       </div>
+      
 
       <hr />
       <div class="total-row">
         <p>Order Total</p>
-        <p class="grand-total">{{ orderTotal | currency }}</p>
+        <p class="grand-total"><strong>${{ orderTotal.toFixed(2) }}</strong></p>
       </div>
     </div>
 
