@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Dessert } from '../../model/dessert';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-to-cart',
+  imports: [CommonModule],
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss']  
 })

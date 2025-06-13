@@ -1,5 +1,5 @@
-@use 'mixins' as *;
-@use 'variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
 
 // cart section
 .cart{
@@ -48,8 +48,8 @@
   .item-info {
     h3 {
       margin: 0 0 0.25rem;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: $font-bold;
       color: $rose-900;
     }
 
@@ -66,24 +66,26 @@
 
       .subtotal {
         font-weight: $font-semibold;
-        color: $rose-900;
+        color: $rose-500;
       }
     }
   }
 
   .remove-item {
     background: none;
-    border: none;
+    border: 1px solid $rose-400;
+    border-radius: 5rem;
     cursor: pointer;
-    padding: 0;
+    padding: 0.12rem;
     img {
-      width: 20px;
-      height: 20px;
+      width: 10px;
+      height: 10px;
       opacity: 0.6;
       transition: opacity 0.2s ease;
 
       &:hover {
         opacity: 1;
+        color: $rose-900;
       }
     }
   }
@@ -97,7 +99,8 @@
   font-size: 1.2rem;
 
   .label {
-    color: $rose-300;
+    font-size: 1rem;
+    color: $rose-900;
   }
 
   .total {
@@ -126,7 +129,7 @@
     color: #444;
 
     strong {
-      font-weight: 600;
+      font-weight: $font-semibold;
     }
   }
 }
@@ -135,7 +138,7 @@
   width: 100%;
   padding: 1rem;
   background-color: #d64500;
-  color: #fff;
+  color: $white;
   font-size: 1rem;
   font-weight: 600;
   border: none;
@@ -192,7 +195,7 @@
       border-radius: 0.75rem;
       overflow-y: auto;
 
-      .item {
+      .confirmed-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -204,21 +207,34 @@
           border-radius: 0.5rem;
         }
 
-        .info {
+        .item-info {
           flex: 1;
           margin: 0 0.75rem;
 
           .name {
             font-weight: $font-regular;
+            color: $rose-900;
+            margin-bottom: 0.25rem;
+            text-align: left;
           }
 
-          .quantity {
+          .quantity-price {
+            gap: 1rem;
+           
+            .quantity {
             font-size: 0.85rem;
-            color: $white;
+            color: $red;
+            }
+
+            .unit-price {
+              font-size: 0.85rem;
+              color: $rose-500;
+            }
           }
         }
 
         .total {
+          font-size: 1rem;
           font-weight: $font-bold;
         }
       }
@@ -228,9 +244,14 @@
         justify-content: space-between;
         margin-top: 1rem;
 
+        p {
+          font-size: .579rem;
+          color: $rose-900;
+        }
+
         .grand-total {
           font-weight: $font-bold;
-          font-size: 1.25rem;
+          font-size: 1.2rem;
         }
       }
     }

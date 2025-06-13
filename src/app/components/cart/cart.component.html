@@ -15,8 +15,8 @@
         <div class="item-info">
           <h3>{{ item.name }}</h3>
           <p class="quantity-price">
-            <span class="quantity">{{ item.quantity }}&#88;</span>
-            <span class="unit-price">&#64; ${{ item.price }}</span>
+            <span class="quantity">{{ item.quantity }}x</span>
+            <span class="unit-price">&#64;${{ item.price.toFixed(2) }}</span>
             <span class="subtotal">${{ item.subTotalPrice.toFixed(2) }}</span>
           </p>
         </div>
@@ -49,19 +49,25 @@
     </div>
 
     <div class="modal-body">
-      <div class="item" *ngFor="let item of confirmedItems">
+      <div class="confirmed-item" *ngFor="let item of confirmedItems">
         <img [src]="item.image.thumbnail" alt="{{ item.name }}" />
-        <div class="info">
+        <div class="item-info">
           <p class="name">{{ item.name }}</p>
-          <p class="quantity">{{ item.quantity }}&#88; &#64;${{ item.price}}</p>
+          <p class="quantity-price">
+            <span class="quantity">{{ item.quantity }}x</span>
+            <span class="unit-price">&#64;${{ item.price }}</span>
+          </p>
+          
+          <!-- <p class="quantity">{{ item.quantity }}&#88; &#64;${{ item.price}}</p> -->
         </div>
-        <p class="total">{{ (item.price * item.quantity)}}</p>
+        <hr />
+        <p class="total">${{ (item.price * item.quantity)}}</p>
       </div>
 
       <hr />
       <div class="total-row">
         <p>Order Total</p>
-        <p class="grand-total">{{ orderTotal | currency }}</p>
+        <p class="grand-total">${{ orderTotal}}</p>
       </div>
     </div>
 
