@@ -55,12 +55,12 @@
           <p class="name">{{ item.name }}</p>
           <p class="quantity-price">
             <span class="quantity">{{ item.quantity }}x</span>
-            <span class="unit-price">&#64;${{ item.price }}</span>
+            <span class="unit-price">&#64;${{ item.price.toFixed(2) }}</span>
           </p>
           
           <!-- <p class="quantity">{{ item.quantity }}&#88; &#64;${{ item.price}}</p> -->
         </div>
-        <p class="total">${{ (item.price * item.quantity)}}</p>
+        <p class="total">${{ (item.price * item.quantity).toFixed(2) }}</p>
       </div>
       
 

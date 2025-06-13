@@ -24,12 +24,8 @@ main {
   h1 {
     @include TextPreset1;
     color: $rose-900;
-    
+}
+
+
   }
-
-
-
 }
-}
-
-

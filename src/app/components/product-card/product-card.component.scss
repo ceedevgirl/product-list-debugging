@@ -1,85 +1,132 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/variables' as *;
 
-// dessert section   
 
 .desserts-title {
-    margin: 2rem 0;
+  margin: 2rem 0;
+
+  @include mobile {
+    margin: 1.5rem 0;
+    font-size: 1.25rem;
+  }
 }
 
 .desserts-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
 
-    flex: 1;
-    //   @include flex(row, flex-start, stretch, 1.5rem);
-    //   flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
+  @include mobile {
+    padding: 0 0.5rem;
+  }
 
-    .desserts-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr; 
-        gap: 1.5rem;
+  .desserts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
 
-        @media screen and (min-width: 768px) {
-            grid-template-columns: 1fr 1fr 1fr
-        }
-
-        
+    // For screens 768px-900px (tablets) - 3 columns
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
     }
 
-    .dessert-item {
-        @include flex(column, flex-start, stretch, 2rem);
-        // width: 250px;
-        height: fit-content;
-
-        .item-image-add-to-cart {
-            @include flex(column);
-
-            img {
-                aspect-ratio: 1;
-                width: 100%;
-                border-radius: 10px;
-                object-fit: cover;
-            }
-
-        }
-
+    // For screens 320px-767px (mobile) - 1 column
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
-    .add-to-cart-container button {
-        @include flex(row, flex-start, stretch, 0.5rem);
-        padding: 0.5rem 1rem;
-        border: 1px solid $rose-400;
-        background-color: $white;
-        border-radius: 50px;
-        width: fit-content;
-        margin: -1.2rem auto;
-        cursor: pointer;
+    // For very small screens below 320px
+    @media (max-width: 319px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
 
-        &:hover {
-            color: $red;
-            border-color: $red;
-            transition: all 300ms ease-in-out;
-        }
+  .dessert-item {
+    @include flex(column, flex-start, stretch, 2rem);
+    height: fit-content;
 
-        p {
-            @include TextPreset4Bold;
-        }
+    @include mobile {
+      gap: 0.75rem;
     }
 
-    // item info
-    .item-info {
-        .category {
-            @include TextPreset4;
-        }
+    .item-image-add-to-cart {
+      @include flex(column);
+      position: relative;
 
-        .name,
-        .price {
-            @include TextPreset3;
-        }
+      img {
+        aspect-ratio: 1;
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
 
-        .price {
-            color: $red;
+        @include mobile {
+          border-radius: 8px;
         }
+      }
     }
+  }
+
+  .add-to-cart-container button {
+    @include flex(row, flex-start, stretch, 0.5rem);
+    padding: 0.5rem 1rem;
+    border: 1px solid $rose-400;
+    background-color: $white;
+    border-radius: 50px;
+    width: fit-content;
+    margin: -1.2rem auto;
+    cursor: pointer;
+    min-height: 44px; // Touch target size
+
+    @include mobile {
+      margin: -1rem auto;
+      padding: 0.625rem 1.25rem;
+      min-width: 120px;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    &:hover {
+      color: $red;
+      border-color: $red;
+      transition: all 300ms ease-in-out;
+    }
+
+    p {
+      @include TextPreset4Bold;
+
+      @include mobile {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .item-info {
+    @include mobile {
+      text-align: left;
+    }
+
+    .category {
+      @include TextPreset4;
+
+      @include mobile {
+        font-size: 0.8rem;
+      }
+    }
+
+    .name,
+    .price {
+      @include TextPreset3;
+
+      @include mobile {
+        font-size: 0.9rem;
+      }
+    }
+
+    .price {
+      color: $red;
+    }
+  }
 }

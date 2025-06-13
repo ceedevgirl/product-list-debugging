@@ -1,22 +1,80 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/variables' as *;
+// .add-to-cart-container {
+//   width: 160px;
+//   margin: -1.2rem auto;
+// }
+// .add-to-cart-default, .quantity-gauge {
+//   @include flex(row, flex-start, stretch, 0.5rem);
+//   padding: 0.5rem 1rem;
+//   border-radius: 50px;
+//   width: 100%;
+  
+// }
+// .add-to-cart-default {
+//   @include flex(row, center, stretch, 0.5rem);
+//   padding: 0.5rem 1rem;
+//   border: 1px solid $rose-400;
+//   background-color: $white;
+//   border-radius: 50px;
+
+//   &:hover {
+//     color: $red;
+//     border-color: $red;
+//     transition: all 300ms ease-in-out;
+//   }
+
+//   p {
+//     @include TextPreset4Bold;
+//   }
+
+// }
+
+// .quantity-gauge {
+//   @include flex(row, space-between, center);
+//   @include TextPreset4Bold;
+//   background-color: $red;
+//   color: $white;
+//   cursor: default;
+
+  
+//   button {
+//     @include flex(row, center, center, 0);
+//     width: 20px;
+//     aspect-ratio: 1;
+//     border-radius: 100%;
+//     border-color: $white;
+//   }
+// }
+
 .add-to-cart-container {
   width: 160px;
   margin: -1.2rem auto;
-}
-.add-to-cart-default, .quantity-gauge {
+
+  @include mobile {
+    width: 100%;
+    max-width: 180px;
+    margin: -0.875rem auto;
+  }
+} 
+
+.add-to-cart-default, 
+.quantity-gauge {
   @include flex(row, flex-start, stretch, 0.5rem);
   padding: 0.5rem 1rem;
   border-radius: 50px;
   width: 100%;
-  
-}
+  min-height: 44px; // Touch target size
+
+  @include mobile {
+    padding: 0.625rem 1.25rem;
+  }
+} 
+
 .add-to-cart-default {
   @include flex(row, center, stretch, 0.5rem);
-  padding: 0.5rem 1rem;
   border: 1px solid $rose-400;
   background-color: $white;
-  border-radius: 50px;
 
   &:hover {
     color: $red;
@@ -26,8 +84,11 @@
 
   p {
     @include TextPreset4Bold;
-  }
 
+    @include mobile {
+      font-size: 0.85rem;
+    }
+  }
 }
 
 .quantity-gauge {
@@ -37,13 +98,28 @@
   color: $white;
   cursor: default;
 
-  
+  @include mobile {
+    font-size: 0.85rem;
+  }
+
   button {
     @include flex(row, center, center, 0);
     width: 20px;
     aspect-ratio: 1;
     border-radius: 100%;
-    border-color: $white;
+    border: 1px solid $white;
+    background: transparent;
+    color: $white;
+    cursor: pointer;
+    min-width: 36px;
+    min-height: 36px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
 }
-
