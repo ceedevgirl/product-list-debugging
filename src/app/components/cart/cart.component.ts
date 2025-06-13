@@ -20,12 +20,16 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.cart$.subscribe(items => {
-      this.cartItems = items;
-      this.totalItems = this.cartService.getTotalItems();
+  this.cartService.cart$.subscribe(items => {
+    this.cartItems = items;
+    this.totalItems = this.cartService.getTotalItems();
+    
+    // Only update orderTotal if modal is not open
+    if (!this.isOrderConfirmed) {
       this.orderTotal = this.cartService.getOrderTotal();
-    });
-  }
+    }
+  });
+}
 
   removeItem(item: CartItems): void {
     this.cartService.removeDessertFromCart(item);
